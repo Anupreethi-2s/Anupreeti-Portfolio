@@ -1,41 +1,44 @@
-# Anupreethi Portfolio
+# Anupreethi's Portfolio
 
-Welcome to my personal portfolio website! This project showcases my skills, projects, education, and experience in the field of software development.
+Welcome to my personal portfolio website!  
+This project presents an overview of my skills, projects, education, and experience in software development. It is designed to be simple, modern, and user-friendly.
 
-You can view the live website here: 
+🌐 **Live Website:** [Anupreethi-2s/Anupreeti-Portfolio](https://anupreethi-2s.github.io/Anupreeti-Portfolio/)
 
-## Features
 
-- Responsive design for all devices
-- Clean and modern UI
-- About Me section
-- Skills and Technology Stack
-- Projects Showcase
-- Contact Information
+## 🚀 Features
 
-## Tech Stack
+- Fully responsive across all devices  
+- Clean and modern UI design  
+- "About Me" section  
+- Skills & Technology stack overview  
+- Project showcases with descriptions 
 
-- HTML
-- CSS
-- JavaScript
-- React.js
+---
 
-## Getting Started
+## 🛠️ Tech Stack
 
-If you'd like to run this project locally:
+- **HTML**  
+- **CSS**  
+- **JavaScript**  
+- **React.js**
 
-1. Clone the repository:
+
+
+## 💻 Getting Started
+
+To run this project locally, follow the steps below:
+
+1. **Clone the repository:**
    ```bash
-   
+   git clone https://github.com/Anupreethi-2s/Anupreeti-Portfolio.git
 
-## Navigate to the project folder
 
-cd my-portfolio
 
-## Install dependencies
+## For dependencies
 
 npm install
 
-## Start the development server
+## The app will be available at http://localhost:3000
 
 npm start

@@ -13,7 +13,6 @@ const Projects = {
         {
             project : "Solar Inspection Reports",
             technolohies : "Python",
-            // githubLink : "https://github.com/Harshith6928/Food-Delivery-App"
         },
         {
             project : "Solar-anomaly-detection",

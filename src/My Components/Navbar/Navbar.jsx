@@ -18,7 +18,7 @@ const Navbar = ({ scrollToSection, homeRef, aboutRef, skillsRef, projectsRef, co
                 <li onClick={() => scrollToSection(aboutRef)}>About</li>
                 <li onClick={() => scrollToSection(skillsRef)}>Skills</li>
                 <li onClick={() => scrollToSection(projectsRef)}>Projects</li>
-                <li onClick={() => scrollToSection(contactRef)}>Contact</li>
+                {/* <li onClick={() => scrollToSection(contactRef)}>Contact</li> */}
             </ul>
         </div>
     </nav>

@@ -1,213 +1,213 @@
 .projects {
-    width: 100%;
-    background-color: #0A192F;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 0px;
-    padding-top: 100px;
-  }
-  
-  .projects > .sub_projects {
-    width: 90%;
-  }
-  
-  .projects > .sub_projects > h1 {
-    color: #F9F9F9;
-    padding: 10px 10px;
-    font-size: 32px;
-  }
-  
+  width: 100%;
+  background-color: #2E1F2F; /* Deep plum background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0px;
+  padding-top: 100px;
+}
+
+.projects > .sub_projects {
+  width: 90%;
+}
+
+.projects > .sub_projects > h1 {
+  color: #F4F1F5; /* Soft cream text */
+  padding: 10px 10px;
+  font-size: 32px;
+}
+
+.projects > .sub_projects > .my_projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px;
+}
+
+.projects > .sub_projects > .my_projects > .project {
+  width: 300px;
+  max-width: 100%;
+  color: #F4F1F5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 2px 2px #BFA0B2;
+  border: 0.5px solid #BFA0B2;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  background-color: #3B2A3F;
+}
+
+.projects > .sub_projects > .my_projects > .project::before {
+  content: "";
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  background: rgba(200, 162, 200, 0.7); /* Lavender overlay */
+  transition: bottom 0.3s ease-in-out;
+}
+
+.projects > .sub_projects > .my_projects > .project:hover::before {
+  bottom: 0;
+}
+
+.projects > .sub_projects > .my_projects > .project > .projecticon {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projects > .sub_projects > .my_projects > .project > .projecticon > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.projects > .sub_projects > .my_projects > .project > h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.projects > .sub_projects > .my_projects > .project > p {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.projects > .sub_projects > .my_projects > .project > span {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  padding: 10px;
+  background: #D998A0; /* Rose blush */
+  color: white;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: bottom 0.3s ease-in-out;
+}
+
+.projects > .sub_projects > .my_projects > .project:hover > span {
+  bottom: 60%;
+}
+
+.projects > .sub_projects > .my_projects > .project > span > .icon {
+  font-size: 25px;
+}
+
+.projects > .sub_projects > .my_projects > .project > h1 {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  transition: bottom 0.3s ease-in-out;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.projects > .sub_projects > .my_projects > .project:hover > h1 {
+  bottom: 50%;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
   .projects > .sub_projects > .my_projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    padding: 20px;
-    /* border: 2px solid white; */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
   }
-  
-  .projects > .sub_projects > .my_projects > .project {
-    width: 300px;
-    max-width: 100%;
-    color: #F9F9F9;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 2px 2px #808080;
-    border: 0.5px solid #808080;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .projects > .sub_projects > .my_projects > .project::before {
-    content: "";
-    position: absolute;
-    bottom: -100%;
-    left: 0;
-    width: 100%;
-    height: 90%;
-    background: rgba(39, 168, 255, 0.8);
-    transition: bottom 0.3s ease-in-out;
-  }
-  
-  .projects > .sub_projects > .my_projects > .project:hover::before {
-    bottom: 0;
-  }
-  
+
   .projects > .sub_projects > .my_projects > .project > .projecticon {
-    width: 200px;
     height: 200px;
-    overflow: hidden;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* border: 2px solid white; */
   }
-  
-  .projects > .sub_projects > .my_projects > .project > .projecticon > img {
-    width: 100%;
-    object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .projects {
+    padding-top: 80px;
   }
-  
+
+  .projects > .sub_projects > h1 {
+    font-size: 24px;
+  }
+
+  .projects > .sub_projects > .my_projects {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+  }
+
+  .projects > .sub_projects > .my_projects > .project > .projecticon {
+    height: 180px;
+    width: 180px;
+  }
+
   .projects > .sub_projects > .my_projects > .project > h2 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 18px;
-    text-align: center;
-  }
-  
-  .projects > .sub_projects > .my_projects > .project > p {
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-  }
-  
-  .projects > .sub_projects > .my_projects > .project > span {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    bottom: -50px;
-    left: 50%;
-    transform: translateX(-50%) scale(1);
-    padding: 10px;
-    background: #ff7b00;
-    color: white;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: bottom 0.3s ease-in-out;
-  }
-  
-  .projects > .sub_projects > .my_projects > .project:hover > span {
-    bottom: 60%;
-  }
-  
-  .projects > .sub_projects > .my_projects > .project > span > .icon {
-    font-size: 25px;
-  }
-  
-  .projects > .sub_projects > .my_projects > .project > h1 {
-    position: absolute;
-    bottom: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    transition: bottom 0.3s ease-in-out;
     font-size: 16px;
-    font-weight: 600;
   }
-  
-  .projects > .sub_projects > .my_projects > .project:hover > h1 {
+
+  .projects > .sub_projects > .my_projects > .project > span {
+    bottom: -60px;
+  }
+
+  .projects > .sub_projects > .my_projects > .project:hover > span {
+    bottom: 55%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .projects {
+    padding-top: 60px;
+  }
+
+  .projects > .sub_projects > h1 {
+    font-size: 20px;
+  }
+
+  .projects > .sub_projects > .my_projects {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .projects > .sub_projects > .my_projects > .project > .projecticon {
+    height: 160px;
+    width: 160px;
+  }
+
+  .projects > .sub_projects > .my_projects > .project > h2 {
+    font-size: 14px;
+  }
+
+  .projects > .sub_projects > .my_projects > .project > p {
+    font-size: 13px;
+  }
+
+  .projects > .sub_projects > .my_projects > .project > span {
+    bottom: -80px;
+    padding: 8px;
+  }
+
+  .projects > .sub_projects > .my_projects > .project:hover > span {
     bottom: 50%;
   }
-  
-  @media screen and (max-width: 1024px) {
-    .projects > .sub_projects > .my_projects {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-  
-    .projects > .sub_projects > .my_projects > .project > .projecticon {
-      height: 200px;
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    .projects {
-      padding-top: 80px;
-    }
-  
-    .projects > .sub_projects > h1 {
-      font-size: 24px;
-    }
-  
-    .projects > .sub_projects > .my_projects {
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
-    }
-  
-    .projects > .sub_projects > .my_projects > .project > .projecticon {
-      height: 180px;
-      width: 180px;
-    }
-  
-    .projects > .sub_projects > .my_projects > .project > h2 {
-      font-size: 16px;
-    }
-  
-    .projects > .sub_projects > .my_projects > .project > span {
-      bottom: -60px;
-    }
-  
-    .projects > .sub_projects > .my_projects > .project:hover > span {
-      bottom: 55%;
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .projects {
-      padding-top: 60px;
-    }
-  
-    .projects > .sub_projects > h1 {
-      font-size: 20px;
-    }
-  
-    .projects > .sub_projects > .my_projects {
-      grid-template-columns: repeat(1, 1fr); 
-    }
-  
-    .projects > .sub_projects > .my_projects > .project > .projecticon {
-      height: 160px;
-      width: 160px;
-    }
-  
-    .projects > .sub_projects > .my_projects > .project > h2 {
-      font-size: 14px;
-    }
-  
-    .projects > .sub_projects > .my_projects > .project > p {
-      font-size: 13px;
-    }
-  
-    .projects > .sub_projects > .my_projects > .project > span {
-      bottom: -80px;
-      padding: 8px;
-    }
-  
-    .projects > .sub_projects > .my_projects > .project:hover > span {
-      bottom: 50%;
-    }
-  
-    .projects > .sub_projects > .my_projects > .project > h1 {
-      font-size: 14px;
-    }
 
-    .projects > .sub_projects > .my_projects > .project:hover > h1 {
-      bottom: 40%;
-    }
+  .projects > .sub_projects > .my_projects > .project > h1 {
+    font-size: 14px;
   }
+
+  .projects > .sub_projects > .my_projects > .project:hover > h1 {
+    bottom: 40%;
+  }
+}
