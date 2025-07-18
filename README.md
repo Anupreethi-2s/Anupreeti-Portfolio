@@ -3,7 +3,7 @@
 Welcome to my personal portfolio website!  
 This project presents an overview of my skills, projects, education, and experience in software development. It is designed to be simple, modern, and user-friendly.
 
-🌐 **Live Website:** [Anupreethi-2s/Anupreeti-Portfolio](https://anupreethi-2s.github.io/Anupreeti-Portfolio/)
+🌐 **Live Website:** [https://anupreethi-2s.github.io/Anupreeti-Portfolio/]
 
 
 ## 🚀 Features
