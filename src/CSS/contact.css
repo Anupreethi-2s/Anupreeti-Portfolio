@@ -1,0 +1,135 @@
+.contact {
+  width: 100%;
+  background-color: #0a192f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0px;
+  padding-top: 100px;
+}
+
+.contact > .sub_contact {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.contact > .sub_contact > h1 {
+  color: #f9f9f9;
+  padding: 10px;
+  text-align: center;
+  font-size: 28px;
+}
+
+.contact > .sub_contact > form {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.contact > .sub_contact > form > .form1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.contactinput {
+  width: 100%;
+  padding: 15px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1d276f;
+  color: #f9f9f9;
+  margin-bottom: 10px;
+}
+
+textarea {
+  color: #f9f9f9;
+  border-radius: 5px;
+  border: none;
+  background-color: #1d276f;
+  width: 100%;
+  padding: 15px;
+  font-size: 15px;
+  font-family: sans-serif;
+  resize: none;
+}
+
+.contact > .sub_contact > form > button {
+  padding: 12px 20px;
+  border: none;
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #ff7f50;
+  color: #f9f9f9;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+.contact > .sub_contact > form > button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px #ff7f50;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .contact > .sub_contact > form {
+    width: 75%;
+  }
+
+  .contact > .sub_contact > form > .form1 {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .contactinput {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact {
+    padding-top: 80px;
+  }
+
+  .contact > .sub_contact > h1 {
+    font-size: 24px;
+  }
+
+  .contact > .sub_contact > form {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contact {
+    padding-top: 60px;
+  }
+
+  .contact > .sub_contact > h1 {
+    font-size: 22px;
+  }
+
+  .contact > .sub_contact > form {
+    width: 90%;
+  }
+
+  .contact > .sub_contact > form > button {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,270 @@
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 20px 0px;
+    padding-bottom: 60px;
+    background-color: #0A192F;
+    color: #F9F9F9;
+    padding-top: 100px;
+  }
+  
+  .about>.about-left {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 0px;
+    border-radius: 15px;
+    border: 0.5px solid #808080;
+    box-shadow: 2px 2px #808080;
+    text-align: center;
+  }
+  
+  .about>.about-left> #pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-image: url("../My Components/Home/Assets/photo.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 20px rgb(39, 168, 255);
+    cursor: pointer;
+  }
+  
+  .about >.about-left> h1 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  
+  .about >.about-left >p {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  hr{
+    height: 0.5px;
+    border: none;
+    width: 80%;
+    background-color: grey;
+    margin: 20px 0px;
+  }
+  
+  .about >.about-left >aside {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 0px;
+  }
+  
+  .about> .about-left> aside >.info {
+    width: 100%;
+    border-radius: 15px;
+    margin: 11px 0px;
+    display: flex;
+    align-items: center;
+    /* border: 2px solid white; */
+  }
+  
+  .about >.about-left> aside >.info> .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    border-radius: 50%;
+    border: 0.5px solid #808080;
+    box-shadow: 2px 2px 5px #808080;
+    cursor: pointer;
+  }
+  
+  .about >.about-left> aside> .info> .sub-info {
+    width: 75%;
+    margin: 10px 0px;
+    text-align: left;
+    margin-left: 20px;
+  }
+  
+  .about> .about-left> aside >.info >.sub-info >.up {
+    font-size: 10px;
+  }
+  
+  .about >.about-left> aside> .info> .sub-info> .down {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .about >.about-right {
+    width: 60%;
+    border-radius: 15px;
+    padding: 20px;
+    border: 0.5px solid #808080;
+    box-shadow: 2px 2px #808080;
+  }
+  
+  .about >.about-right >h1 {
+    font-size: 29px;
+    font-weight: 700;
+  }
+  
+  .about >.about-right> p {
+    margin-top: 20px;
+    width: 90%;
+    margin-left: 50px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .about> .about-right> h3 {
+    margin-top: 30px;
+    font-size: 24px;
+  }
+  
+  .about> .about-right >article {
+    width: 100%;
+    padding: 5px;
+  }
+  
+  .about >.about-right> article >.education {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 85% 15%;
+    gap: 18px;
+    margin: 13px 0px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0.5px solid #808080;
+    box-shadow: 2px 2px #808080;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .about >.about-right >article> .education:hover {
+    transform: scale(1.01);
+  }
+  
+  .about>.about-right>article>.education>h3{
+    font-size: 17px;
+  }
+  .about>.about-right>article>.education>:nth-child(2){
+    font-size: 15px;
+  }
+  .about>.about-right>article>.education>:nth-child(3){
+    font-size: 15px;
+  }
+  .about>.about-right>article>.education>:nth-child(4){
+    font-size: 14px;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .about {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 50px 20px;
+    }
+  
+    .about >.about-left,
+    .about> .about-right {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .about> .about-left{
+      margin-top: 30px;
+    }
+  
+    .about> .about-right{
+      margin-top: 10px;
+    }
+  
+    .about> .about-left >#pic {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .about> .about-left> aside >.info{
+      width: 50%;
+      /* justify-content: center; */
+    }
+  
+    .about >.about-right> p {
+      width: 100%;
+      margin-left: 15px;
+      text-align: left;
+    }
+  
+    .about >.about-right >h1 {
+      text-align: left;
+    }
+  
+    .about >.about-right >h3 {
+      margin-left: 0;
+      text-align: left;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .about >.about-left >#pic {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .about >.about-left >aside >.info {
+      align-items: center;
+      text-align: center;
+    }
+  
+    .about> .about-right> article >.education {
+      grid-template-columns: 100%;
+      /* text-align: center; */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .about> .about-left {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    .about> .about-left #pic {
+      width: 90px;
+      height: 90px;
+    }
+  
+    .about >.about-left h1 {
+      font-size: 18px;
+    }
+  
+    .about >.about-left p {
+      font-size: 10px;
+    }
+  
+    .about> .about-left aside .info {
+      width: 100%;
+    }
+  
+    .about >.about-right {
+      width: 100%;
+      padding: 15px;
+    }
+  
+    .about >.about-right >h1 {
+      font-size: 24px;
+    }
+  
+    .about> .about-right >p {
+      font-size: 14px;
+    }
+  
+    .about >.about-right >article> .education {
+      padding: 8px;
+    }
+  
+    .about >.about-right> article> .education> h3 {
+      font-size: 14px;
+    }
+  }

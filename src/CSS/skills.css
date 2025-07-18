@@ -1,0 +1,111 @@
+.skills {
+    width: 100%;
+    background-color: #0A192F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0px;
+    padding-top: 100px;
+  }
+  
+  .skills > .techskills {
+    width: 90%;
+  }
+  
+  .skills > .techskills > h1 {
+    color: #F9F9F9;
+    padding: 0px 10px;
+    font-size: 32px;
+  }
+  
+  .skills > .techskills > .technicalskills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust columns dynamically */
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .skills > .techskills > .technicalskills > .skillcard {
+    color: #F9F9F9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 2px 2px #808080;
+    border: 0.5px solid #808080;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .skills > .techskills > .technicalskills > .skillcard:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px #27a8ff;
+  }
+  
+  .skills > .techskills > .technicalskills > .skillcard > .skillicon {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .skills > .techskills > .technicalskills > .skillcard > .skillicon > img {
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 1223px) {
+    .skills > .techskills > .technicalskills {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    .skills > .techskills > .technicalskills > .skillcard>h2{
+      font-size: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .skills {
+      padding-top: 80px;
+    }
+  
+    .skills > .techskills > h1 {
+      font-size: 24px;
+    }
+  
+    .skills > .techskills > .technicalskills {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+  
+    .skills > .techskills > .technicalskills > .skillcard {
+      padding: 15px;
+    }
+  
+    .skills > .techskills > .technicalskills > .skillcard>h2{
+      font-size: 15px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .skills {
+      padding-top: 80px;
+    }
+  
+    .skills > .techskills > h1 {
+      font-size: 20px;
+    }
+  
+    .skills > .techskills > .technicalskills {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .skills > .techskills > .technicalskills > .skillcard {
+      padding: 10px;
+    }
+  
+    .skills > .techskills > .technicalskills > .skillcard>h2{
+      font-size: 12px;
+    }
+  }
