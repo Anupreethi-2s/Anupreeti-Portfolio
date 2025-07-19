@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Anupreethi-2s/Anupreeti-Portfolio/static/css/main.5458433b.css",
+    "main.js": "/Anupreethi-2s/Anupreeti-Portfolio/static/js/main.3fe6a7c0.js",
+    "static/js/453.83234151.chunk.js": "/Anupreethi-2s/Anupreeti-Portfolio/static/js/453.83234151.chunk.js",
+    "static/media/photo.jpg": "/Anupreethi-2s/Anupreeti-Portfolio/static/media/photo.a7190a3a5f2eb7c4fb08.jpg",
+    "static/media/database.webp": "/Anupreethi-2s/Anupreeti-Portfolio/static/media/database.4985136c4a994b6d3c12.webp",
+    "static/media/food_delivery.webp": "/Anupreethi-2s/Anupreeti-Portfolio/static/media/food_delivery.6bdb06da69ccce033c8a.webp",
+    "static/media/css.webp": "/Anupreethi-2s/Anupreeti-Portfolio/static/media/css.8d5cce9ca57f8507ad85.webp",
+    "static/media/html.webp": "/Anupreethi-2s/Anupreeti-Portfolio/static/media/html.9ba5683e5bf3666e5666.webp",
+    "static/media/reactjs.webp": "/Anupreethi-2s/Anupreeti-Portfolio/static/media/reactjs.bc77bde37b0e014875c0.webp",
+    "static/media/python.webp": "/Anupreethi-2s/Anupreeti-Portfolio/static/media/python.1930910d9e7f34890849.webp",
+    "static/media/javascript.webp": "/Anupreethi-2s/Anupreeti-Portfolio/static/media/javascript.02d784e758ce6b20c5a3.webp",
+    "index.html": "/Anupreethi-2s/Anupreeti-Portfolio/index.html",
+    "main.5458433b.css.map": "/Anupreethi-2s/Anupreeti-Portfolio/static/css/main.5458433b.css.map",
+    "main.3fe6a7c0.js.map": "/Anupreethi-2s/Anupreeti-Portfolio/static/js/main.3fe6a7c0.js.map",
+    "453.83234151.chunk.js.map": "/Anupreethi-2s/Anupreeti-Portfolio/static/js/453.83234151.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5458433b.css",
+    "static/js/main.3fe6a7c0.js"
+  ]
+}
