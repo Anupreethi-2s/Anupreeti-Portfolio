@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Conversion Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F7F8FA;
+  --surface:#FFFFFF;
+  --surface-2:#EFF2F6;
+  --ink:#16202E;
+  --ink-soft:#5A6875;
+  --ink-faint:#8A97A4;
+  --rule:#DDE3EA;
+  --rule-strong:#C4CDD7;
+  --accent:#0E7C86;
+  --accent-ink:#0A5C64;
+  --accent-soft:#E1F0F1;
+  --warn:#A8452F;
+  --warn-soft:#F7E9E5;
+  --shadow:0 1px 2px rgba(22,32,46,.05),0 8px 24px -12px rgba(22,32,46,.12);
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E141B;
+    --surface:#151D26;
+    --surface-2:#1B242E;
+    --ink:#E6ECF2;
+    --ink-soft:#93A1AF;
+    --ink-faint:#6D7B89;
+    --rule:#253038;
+    --rule-strong:#33414C;
+    --accent:#4FC5CE;
+    --accent-ink:#7FD9E0;
+    --accent-soft:#10333A;
+    --warn:#E08B72;
+    --warn-soft:#2E1D18;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E141B;
+  --surface:#151D26;
+  --surface-2:#1B242E;
+  --ink:#E6ECF2;
+  --ink-soft:#93A1AF;
+  --ink-faint:#6D7B89;
+  --rule:#253038;
+  --rule-strong:#33414C;
+  --accent:#4FC5CE;
+  --accent-ink:#7FD9E0;
+  --accent-soft:#10333A;
+  --warn:#E08B72;
+  --warn-soft:#2E1D18;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:18px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  margin:0;
+}
+
+/* ---------- shell ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.topbar .wrap{display:flex;align-items:center;gap:24px;min-height:52px}
+.mark{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  white-space:nowrap;
+}
+.jump{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+.jump::-webkit-scrollbar{display:none}
+.jump a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  color:var(--ink-soft);text-decoration:none;white-space:nowrap;padding:4px 0;
+  border-bottom:1px solid transparent;
+}
+.jump a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* ---------- masthead ---------- */
+.masthead{padding:76px 0 52px;border-bottom:1px solid var(--rule-strong)}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 22px;
+}
+h1{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(2.5rem,6.2vw,4.4rem);line-height:1.02;
+  letter-spacing:-.03em;margin:0 0 24px;max-width:22ch;
+  text-wrap:balance;
+}
+.standfirst{
+  font-size:1.3rem;line-height:1.5;color:var(--ink-soft);
+  max-width:60ch;margin:0 0 40px;
+}
+.standfirst strong{color:var(--ink);font-weight:600}
+.specsheet{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+}
+.specsheet div{background:var(--surface);padding:14px 16px}
+.specsheet dt{
+  font-family:var(--mono);font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);margin:0 0 5px;
+}
+.specsheet dd{margin:0;font-size:.95rem;font-weight:600;font-family:var(--display)}
+
+/* ---------- section with annotation rail ---------- */
+section{padding:64px 0;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+.grid{display:grid;grid-template-columns:120px minmax(0,1fr);gap:44px;align-items:start}
+.rail{position:sticky;top:76px}
+.rail .num{
+  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;
+  color:var(--accent);display:block;margin-bottom:8px;
+}
+.rail .note{
+  font-family:var(--mono);font-size:10.5px;line-height:1.55;color:var(--ink-faint);
+  border-top:1px solid var(--rule);padding-top:8px;
+}
+.col{max-width:70ch}
+
+h2{
+  font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.35rem);
+  line-height:1.1;letter-spacing:-.02em;margin:0 0 20px;text-wrap:balance;
+}
+h3{
+  font-family:var(--display);font-weight:600;font-size:1.18rem;
+  letter-spacing:-.01em;margin:38px 0 12px;text-wrap:balance;
+}
+h4{
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);margin:30px 0 10px;
+}
+p{margin:0 0 16px}
+.lede{font-size:1.12rem;color:var(--ink-soft)}
+strong{font-weight:600}
+em{font-style:italic}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+
+ul,ol{margin:0 0 18px;padding-left:1.3em}
+li{margin-bottom:8px}
+li::marker{color:var(--accent)}
+
+/* ---------- components ---------- */
+.callout{
+  background:var(--surface);border:1px solid var(--rule);
+  border-left:3px solid var(--accent);
+  padding:20px 22px;margin:26px 0;box-shadow:var(--shadow);
+}
+.callout.tension{border-left-color:var(--warn);background:var(--warn-soft)}
+.callout p:last-child{margin-bottom:0}
+.callout .tag{
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px;
+}
+.callout.tension .tag{color:var(--warn)}
+
+.formula{
+  font-family:var(--mono);font-size:.9rem;line-height:2.1;
+  background:var(--surface);border:1px solid var(--rule);
+  padding:20px 22px;margin:22px 0;overflow-x:auto;
+}
+.formula .slot{
+  background:var(--accent-soft);color:var(--accent-ink);
+  padding:3px 8px;border-radius:2px;font-weight:500;white-space:nowrap;
+}
+
+.tablewrap{overflow-x:auto;margin:24px 0;border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;background:var(--surface)}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+thead th{
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-faint);background:var(--surface-2);
+  white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0}
+td strong{font-family:var(--display)}
+tr.pick td{background:var(--accent-soft)}
+tr.pick td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+
+.tree{
+  font-family:var(--mono);font-size:.86rem;line-height:1.95;
+  background:var(--surface);border:1px solid var(--rule);
+  padding:22px 24px;margin:24px 0;overflow-x:auto;white-space:pre;
+  color:var(--ink);
+}
+.tree b{color:var(--accent);font-weight:600}
+.tree i{color:var(--ink-faint);font-style:normal}
+
+.stack{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:24px 0}
+.row{background:var(--surface);padding:18px 20px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:16px}
+.row .idx{
+  font-family:var(--mono);font-size:12px;font-weight:600;color:var(--accent);
+  padding-top:3px;
+}
+.row h5{
+  font-family:var(--display);font-size:1.02rem;font-weight:600;margin:0 0 6px;
+  letter-spacing:-.01em;
+}
+.row p{font-size:.94rem;color:var(--ink-soft);margin:0}
+.row p+p{margin-top:8px}
+.row .job{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);display:block;margin-top:9px;
+}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;margin:24px 0}
+.card{background:var(--surface);border:1px solid var(--rule);padding:18px 20px}
+.card h5{font-family:var(--display);font-size:1rem;font-weight:600;margin:0 0 8px}
+.card p{font-size:.9rem;color:var(--ink-soft);margin:0}
+
+.metric{
+  font-family:var(--display);font-weight:700;font-size:2.1rem;line-height:1;
+  letter-spacing:-.03em;color:var(--accent);display:block;margin-bottom:6px;
+  font-variant-numeric:tabular-nums;
+}
+
+.checklist{list-style:none;padding:0;margin:20px 0}
+.checklist li{
+  padding:12px 0 12px 34px;border-bottom:1px solid var(--rule);
+  position:relative;margin:0;font-size:.96rem;
+}
+.checklist li:last-child{border-bottom:0}
+.checklist li::before{
+  content:"";position:absolute;left:4px;top:19px;
+  width:11px;height:11px;border:1.5px solid var(--rule-strong);border-radius:2px;
+}
+.checklist li b{font-family:var(--display);font-weight:600}
+
+.footer{padding:44px 0 72px;color:var(--ink-faint);font-size:.86rem}
+.footer p{max-width:70ch}
+.footer a{color:var(--accent)}
+
+@media (max-width:820px){
+  body{font-size:17px}
+  .grid{grid-template-columns:1fr;gap:20px}
+  .rail{position:static;display:flex;align-items:baseline;gap:14px}
+  .rail .num{margin:0}
+  .rail .note{border-top:0;padding-top:0;border-left:1px solid var(--rule);padding-left:14px}
+  section{padding:48px 0}
+  .masthead{padding:52px 0 40px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <span class="mark">Blueprint / v1</span>
+    <nav class="jump">
+      <a href="#tension">01 Read</a>
+      <a href="#positioning">02 Positioning</a>
+      <a href="#visitors">03 Visitors</a>
+      <a href="#sitemap">04 Sitemap</a>
+      <a href="#home">05 Home</a>
+      <a href="#casestudy">06 Case studies</a>
+      <a href="#convert">07 Conversion</a>
+      <a href="#craft">08 Craft spec</a>
+      <a href="#measure">09 Measurement</a>
+      <a href="#next">10 Next</a>
+    </nav>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Portfolio strategy · UX &amp; product design · August 2026</p>
+    <h1>A portfolio that argues, not one that decorates</h1>
+    <p class="standfirst">Structure, positioning, and conversion paths for a UX/product design portfolio whose job is to <strong>turn a stranger into a client</strong>. Most designer portfolios fail not because the work is weak, but because the site never makes a claim the buyer can act on.</p>
+    <dl class="specsheet">
+      <div><dt>Discipline</dt><dd>UX / product design</dd></div>
+      <div><dt>Primary goal</dt><dd>Qualified inbound inquiries</dd></div>
+      <div><dt>Pages</dt><dd>5 core + 3&ndash;5 case studies</dd></div>
+      <div><dt>Decision pending</dt><dd>Client segment</dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section id="tension">
+  <div class="grid">
+    <div class="rail"><span class="num">01</span><p class="note">Start here. This choice constrains every other decision on the page.</p></div>
+    <div class="col">
+      <h2>The read: &ldquo;award-winning&rdquo; and &ldquo;converts&rdquo; pull in opposite directions</h2>
+      <p class="lede">Worth naming before anything else, because it is the single biggest trap in this brief.</p>
+      <p>Award juries reward novelty, ambition, and immersion &mdash; the long intro sequence, the custom cursor, the nav that reveals itself only on scroll. Clients reward speed to confidence. They arrive skeptical, mid-shortlist, often on a phone between meetings, and they are looking for one thing: <em>can this person solve my problem, and are they available?</em></p>
+      <p>Every second of experiential flourish spends attention you needed for the argument. Nielsen Norman Group's analysis of over 205,000 pages found the exit probability is highest in the first ten seconds, and only flattens after about thirty &mdash; visitors who survive that window often stay two minutes or more. Aesthetic judgment forms faster still, in roughly 50 milliseconds, and rarely revises. So the site has one instant to look credible and about ten seconds to state a claim.</p>
+      <div class="callout tension">
+        <span class="tag">The resolution</span>
+        <p>Win awards through <strong>craft in the details</strong>, not obstruction of the content. Typographic precision, motion quality, transition continuity, sub-2.5s load, flawless responsive behaviour. Awwwards and its peers score usability and content alongside design &mdash; a site that is beautiful <em>and</em> immediately legible scores higher than one that is beautiful and coy. Never gate content behind a performance.</p>
+      </div>
+      <p>Practically: no preloader over 800ms, no hidden primary navigation, no hero where the value proposition arrives by animation after the fold has already been judged. The value proposition is <strong>text, present at first paint</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="positioning">
+  <div class="grid">
+    <div class="rail"><span class="num">02</span><p class="note">You asked for help deciding. Recommendation is marked in the table.</p></div>
+    <div class="col">
+      <h2>Positioning: decide who you are for before you design anything</h2>
+      <p class="lede">&ldquo;UX/product designer&rdquo; is a commodity label. A portfolio that speaks to everyone converts no one, because the visitor cannot tell whether their specific problem is one you have solved before.</p>
+
+      <h3>Axis one: which client segment</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Segment</th><th>Why it works</th><th>Why it hurts</th><th>Can a site close it?</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Startups &amp; founders</strong></td>
+              <td>Fast decisions, one decision-maker, values range and velocity</td>
+              <td>Smallest budgets, high churn, frequent equity-instead-of-fee conversations, projects die</td>
+              <td>Yes &mdash; but low ticket, high volume</td>
+            </tr>
+            <tr class="pick">
+              <td><strong>Mid-market product teams</strong><br><span style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Recommended</span></td>
+              <td>Real budget, a named problem, buyer is a Head of Product or VP &mdash; one or two people you can convince</td>
+              <td>Expects process legibility and business framing, not just visuals</td>
+              <td><strong>Yes &mdash; this is the segment a portfolio site can actually close</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Enterprise &amp; agencies</strong></td>
+              <td>Highest rates, longest engagements, retainer potential</td>
+              <td>Procurement, security review, months-long cycles; hired on credentials and referral, not on a site</td>
+              <td>Rarely &mdash; the site supports a sales process, it doesn't start one</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Why mid-market:</strong> it is the only segment where the buying decision is small enough to be made by one or two people and large enough to be worth your time &mdash; which means a website can genuinely carry it from stranger to booked call. Enterprise buys through relationships and procurement; startups buy on price and speed. Mid-market buys on <em>confidence that you have solved this exact problem before</em>, and that is precisely what a well-built case study manufactures.</p>
+      <div class="callout">
+        <span class="tag">Adjust if</span>
+        <p>You have under two years of independent client work &rarr; start with startups to build case study volume, then re-position upward. You already have two or more recognisable enterprise logos &rarr; go straight at enterprise and treat the site as a credibility backstop for outbound, not a lead engine.</p>
+      </div>
+
+      <h3>Axis two: the sharper one &mdash; problem specialisation</h3>
+      <p>Segment tells you who to talk to. <strong>Problem specialisation is what makes them believe you.</strong> The highest-converting independent designers are not positioned by client size at all; they are positioned by a recurring, expensive, named problem. Pick the intersection of a problem and a vertical:</p>
+      <div class="cards">
+        <div class="card"><h5>Activation &amp; onboarding</h5><p>&ldquo;I fix the first five minutes of B2B SaaS products.&rdquo; Easy to attach to revenue, easy to measure, endlessly recurring.</p></div>
+        <div class="card"><h5>Complexity &amp; data density</h5><p>&ldquo;I make dashboards and internal tools people can actually operate.&rdquo; Underserved, high-ticket, few competitors.</p></div>
+        <div class="card"><h5>Zero-to-one product design</h5><p>&ldquo;I design the first version of products that need to raise money.&rdquo; Strong founder pull, clear deliverable.</p></div>
+      </div>
+      <p>You do not need to abandon other work. The specialisation is what the <em>homepage</em> claims; the case studies can show range beneath it.</p>
+
+      <h3>The value proposition, as a formula</h3>
+      <p>Almost every designer hero reads <em>&ldquo;Designer. Thinker. Problem-solver.&rdquo;</em> That is a description, not a claim. A claim names a buyer, an outcome, and a method:</p>
+      <div class="formula">I help <span class="slot">specific buyer</span> <span class="slot">achieve a measurable outcome</span><br>by <span class="slot">a method only you would describe that way</span>.</div>
+      <h4>Worked examples</h4>
+      <ul>
+        <li>&ldquo;I help B2B SaaS teams turn signups into paying users &mdash; by redesigning onboarding around the one action that predicts retention.&rdquo;</li>
+        <li>&ldquo;I design internal tools that operations teams stop complaining about. Twelve years of interfaces for people who use software eight hours a day.&rdquo;</li>
+        <li>&ldquo;I take founders from a pitch deck to a product people can use in six weeks, without a design team.&rdquo;</li>
+      </ul>
+      <p>Immediately beneath the claim: <strong>one proof line</strong>. Not a paragraph. A metric, a named client, or a number of engagements &mdash; whichever you can defend.</p>
+
+      <h3>Lock it with five answers</h3>
+      <p>Everything downstream in this document depends on these. Write one sentence each before design begins:</p>
+      <ol>
+        <li>What kind of company, specifically, and how do I know when one is on the site?</li>
+        <li>What problem do they already know they have, in their words &mdash; not mine?</li>
+        <li>What changes for them after working with me, expressed as a number if possible?</li>
+        <li>What do I do differently from the next three designers they will look at?</li>
+        <li>Who am I <em>not</em> for? (Naming this on the site raises trust more than any testimonial.)</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="visitors">
+  <div class="grid">
+    <div class="rail"><span class="num">03</span><p class="note">Three journeys, one site. Every page must serve all three within two clicks.</p></div>
+    <div class="col">
+      <h2>The three visitors</h2>
+      <p class="lede">Navigation design is not a menu problem. It is the problem of three different people needing three different things at three different speeds.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Visitor</th><th>Time budget</th><th>Question in their head</th><th>What must be reachable</th></tr></thead>
+          <tbody>
+            <tr><td><strong>The skimmer</strong><br>Just landed, no context</td><td>~30 seconds</td><td>&ldquo;Is this person even relevant to me?&rdquo;</td><td>Value proposition + one outcome-led work card, above the fold</td></tr>
+            <tr><td><strong>The evaluator</strong><br>Building a shortlist of three</td><td>5&ndash;10 minutes</td><td>&ldquo;Can they think, or do they just make things pretty?&rdquo;</td><td>Two full case studies, the About page, process</td></tr>
+            <tr><td><strong>The buyer</strong><br>Already convinced, checking fit</td><td>~2 minutes</td><td>&ldquo;Are they available, affordable, and easy to start with?&rdquo;</td><td>Availability, engagement models, price anchor, booking link</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The buyer is the one most portfolios fail. They have decided, and the site makes them hunt for a way to say so &mdash; or offers only a blank contact form that asks them to compose an email from scratch. <strong>Persistent nav, with a visible primary action, on every page.</strong></p>
+    </div>
+  </div>
+</section>
+
+<section id="sitemap">
+  <div class="grid">
+    <div class="rail"><span class="num">04</span><p class="note">Five core pages. Resist more &mdash; each additional page dilutes the path.</p></div>
+    <div class="col">
+      <h2>Site structure</h2>
+      <p class="lede">Small, deliberate, no dead ends. Depth of two everywhere.</p>
+      <div class="tree">/                      <b>Home</b> &mdash; the pitch. Carries the claim, three projects, one ask.
+│
+├── /work               <b>Work index</b> <i>(only if you have 5+ projects)</i>
+│   ├── /work/[slug]    <b>Case study</b> &mdash; 3 to 5, no more. Depth beats volume.
+│   ├── /work/[slug]
+│   └── /work/[slug]
+│
+├── /approach           <b>How I work</b> &mdash; process, engagement models,
+│                       what a project actually feels like. Handles the
+│                       buyer's risk objection before they raise it.
+│
+├── /about              <b>About</b> &mdash; high-intent page. People who read
+│                       this are close to contacting. Trust, not biography.
+│
+├── /contact            <b>Contact</b> &mdash; booking-first, form-second.
+│
+└── /notes              <b>Writing</b> <i>(optional, high leverage)</i> &mdash; proof of
+                        thinking, organic search, reason to return.</div>
+      <div class="callout">
+        <span class="tag">Note on /work</span>
+        <p>With three or four projects, skip the index entirely and let the homepage be the work page &mdash; every removed click is retained attention. Add <code style="font-family:var(--mono);font-size:.85em">/work</code> only when the grid outgrows the homepage.</p>
+      </div>
+      <h4>Rules that apply everywhere</h4>
+      <ul>
+        <li><strong>No dead ends.</strong> Every case study ends with the next case study <em>and</em> the primary CTA. Never let a page terminate in whitespace.</li>
+        <li><strong>Nav stays visible.</strong> Four items maximum, plus a contrasting action button. No hamburger on desktop; no hidden-until-scroll reveals.</li>
+        <li><strong>One primary action site-wide.</strong> Pick it (almost certainly &ldquo;Book a call&rdquo;) and repeat it. Competing CTAs split intent.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="home">
+  <div class="grid">
+    <div class="rail"><span class="num">05</span><p class="note">Scroll order is argument order. Each section earns the next scroll.</p></div>
+    <div class="col">
+      <h2>The homepage, section by section</h2>
+      <p class="lede">Attention concentrates hard at the top: roughly 57% of viewing time is spent above the fold, 74% within the first two screenfuls, and over 42% inside the top fifth of the page. Sequence accordingly &mdash; this order is a sequence, and the numbering is load-bearing.</p>
+      <div class="stack">
+        <div class="row"><span class="idx">01</span><div>
+          <h5>Hero &mdash; the claim</h5>
+          <p>Headline is the value proposition in plain language, rendered as text at first paint. One proof line beneath. Primary button (&ldquo;Book a 20-minute call&rdquo;) plus a quiet secondary (&ldquo;See the work&rdquo;). Availability microcopy: <em>&ldquo;Taking two projects for Q4.&rdquo;</em></p>
+          <p>What does <em>not</em> belong here: your name in 200px type, a rotating adjective animation, an abstract 3D object, or the word &ldquo;creative.&rdquo;</p>
+          <span class="job">Job: relevance in 10 seconds</span>
+        </div></div>
+        <div class="row"><span class="idx">02</span><div>
+          <h5>Credibility strip</h5>
+          <p>Immediately after the hero, before the work. Client logos, or a row of three defensible numbers, or a single strong testimonial line. Small, quiet, monochrome. This is the section that converts skepticism into willingness to scroll.</p>
+          <span class="job">Job: earn the second screenful</span>
+        </div></div>
+        <div class="row"><span class="idx">03</span><div>
+          <h5>Selected work &mdash; three projects</h5>
+          <p>The highest-leverage change most portfolios can make: <strong>title each card with the outcome, not the client.</strong> &ldquo;Cut onboarding drop-off by 34% for a lending app&rdquo; does work that &ldquo;Acme &mdash; Redesign&rdquo; cannot. Client name and role become the subtitle.</p>
+          <p>Three, not nine. Nine says &ldquo;pick one&rdquo;; three says &ldquo;these are the ones that matter.&rdquo;</p>
+          <span class="job">Job: proof, not portfolio</span>
+        </div></div>
+        <div class="row"><span class="idx">04</span><div>
+          <h5>The problem you solve</h5>
+          <p>Two short paragraphs restating the positioning in the visitor's own vocabulary &mdash; the symptoms they'd describe to a colleague. Reinforces the hero for anyone who skimmed it, and gives the evaluator language to repeat internally when they advocate for you.</p>
+          <span class="job">Job: recognition</span>
+        </div></div>
+        <div class="row"><span class="idx">05</span><div>
+          <h5>How working together goes</h5>
+          <p>Three or four steps, timeline attached, deliverables named. This is a risk-removal section, not a methodology lecture. The buyer's unspoken fear is an expensive engagement with an unclear end; answer it here and link to <code style="font-family:var(--mono);font-size:.85em">/approach</code> for depth.</p>
+          <span class="job">Job: de-risk</span>
+        </div></div>
+        <div class="row"><span class="idx">06</span><div>
+          <h5>Social proof, specifically</h5>
+          <p>Two or three testimonials with a name, role, company, and face. Generic praise is worthless; quotes that name a specific fear you resolved (&ldquo;we'd stalled for four months&rdquo;) do the persuading.</p>
+          <span class="job">Job: transfer of trust</span>
+        </div></div>
+        <div class="row"><span class="idx">07</span><div>
+          <h5>The single ask</h5>
+          <p>Full-width close. One action, restated availability, and a fit qualifier: who this is for, and who it isn't. Naming who you're not for is the most under-used trust device on designer sites.</p>
+          <span class="job">Job: convert</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="casestudy">
+  <div class="grid">
+    <div class="rail"><span class="num">06</span><p class="note">Inverted pyramid, not chronology. This template is the whole ballgame.</p></div>
+    <div class="col">
+      <h2>The case study template</h2>
+      <p class="lede">The dominant failure mode in UX portfolios is the chronological process dump: research, personas, wireframes, final screens. It mirrors how the project happened, not how the reader decides. Nobody reaching screen fourteen of your discovery phase has been convinced by screen thirteen.</p>
+      <p>Invert it. Lead with the outcome, then earn it backwards.</p>
+      <div class="stack">
+        <div class="row"><span class="idx">01</span><div><h5>Outcome, first screen</h5><p>The headline result and one sentence on what changed. If you have a number, it is the largest type on the page. If you don't, use a qualitative outcome you can defend &mdash; shipped, adopted, unblocked a stalled team.</p></div></div>
+        <div class="row"><span class="idx">02</span><div><h5>The situation and the constraint</h5><p>Three or four sentences. What was broken, what was at stake commercially, and what you were <em>not</em> allowed to change. Constraints are what make design decisions legible as decisions.</p></div></div>
+        <div class="row"><span class="idx">03</span><div><h5>Two or three pivotal moments</h5><p>Not every step &mdash; the moments where you chose one path over another and were right. Each one: what you believed, what you found, what you changed. This is where an evaluator decides whether you can think.</p></div></div>
+        <div class="row"><span class="idx">04</span><div><h5>Evidence it worked</h5><p>Metrics, quotes from the client team, adoption data, a before/after of the actual interface. Attribute honestly &mdash; &ldquo;alongside a pricing change&rdquo; costs you nothing and buys credibility.</p></div></div>
+        <div class="row"><span class="idx">05</span><div><h5>What you'd do differently</h5><p>Two or three sentences of genuine hindsight. Rare, disarming, and strongly persuasive to senior buyers, who know every project has one. Designers who admit nothing read as designers who learned nothing.</p></div></div>
+        <div class="row"><span class="idx">06</span><div><h5>Onward</h5><p>Next case study + the primary CTA. Never a dead end.</p></div></div>
+      </div>
+
+      <h3>Where interactivity earns its place</h3>
+      <p>&ldquo;Interactive case study&rdquo; usually degrades into parallax and scroll-jacked image reveals. Interaction should let the reader <em>experience the design problem</em> &mdash; which, for a UX designer, is itself a demonstration of skill:</p>
+      <div class="cards">
+        <div class="card"><h5>Before / after drag</h5><p>A slider over the same screen. Instantly communicates the delta with zero reading.</p></div>
+        <div class="card"><h5>Live prototype embed</h5><p>Let them click the actual flow. Two or three steps, not the whole product.</p></div>
+        <div class="card"><h5>Annotated flow walkthrough</h5><p>Scroll advances a diagram one node at a time, with the reasoning in the margin.</p></div>
+        <div class="card"><h5>Constraint toggle</h5><p>Switch between the options you considered and show why the chosen one won.</p></div>
+      </div>
+      <p><strong>Rule:</strong> if the interaction can be removed and the argument survives intact, it was decoration. Cut it. Every interactive element also needs a static fallback for mobile and for reduced-motion users.</p>
+    </div>
+  </div>
+</section>
+
+<section id="convert">
+  <div class="grid">
+    <div class="rail"><span class="num">07</span><p class="note">A contact form is the weakest possible ending. Build a ladder instead.</p></div>
+    <div class="col">
+      <h2>Conversion paths</h2>
+      <p class="lede">Visitors arrive at different levels of readiness. Offering only one action &mdash; usually a nine-field form &mdash; captures the small fraction already at maximum intent and loses everyone else permanently.</p>
+      <h4>The commitment ladder</h4>
+      <div class="stack">
+        <div class="row"><span class="idx">A</span><div><h5>High intent &mdash; book directly</h5><p>An embedded calendar, 20 minutes, no form before it. &ldquo;Book a call&rdquo; converts substantially better than &ldquo;Get in touch&rdquo; because it names the commitment precisely and bounds it.</p></div></div>
+        <div class="row"><span class="idx">B</span><div><h5>Medium intent &mdash; three fields</h5><p>Name, email, and one open question: <em>&ldquo;What are you trying to fix?&rdquo;</em> That single field doubles as your qualification filter &mdash; the quality of the answer tells you whether the call is worth taking.</p></div></div>
+        <div class="row"><span class="idx">C</span><div><h5>Low intent &mdash; stay in orbit</h5><p>A short list, a downloadable piece of your process, or a follow link. Most people who will hire you are not ready today; capture the ones who will be ready in March.</p></div></div>
+      </div>
+      <h4>Four multipliers</h4>
+      <ul>
+        <li><strong>State availability explicitly.</strong> &ldquo;Two slots for Q4&rdquo; removes the most common silent objection &mdash; <em>they're probably booked</em> &mdash; and adds honest scarcity.</li>
+        <li><strong>Anchor price.</strong> A range or a starting figure on <code style="font-family:var(--mono);font-size:.85em">/approach</code>. It repels tyre-kickers, and buyers who cannot find any pricing signal frequently just leave rather than risk an awkward conversation.</li>
+        <li><strong>Qualify in both directions.</strong> &ldquo;Best fit for teams with a product already in market. Not the right fit for logo-only projects.&rdquo; Specificity reads as confidence.</li>
+        <li><strong>Set expectations for the reply.</strong> &ldquo;I answer every message within two working days.&rdquo; Cheap to say, and it converts.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="craft">
+  <div class="grid">
+    <div class="rail"><span class="num">08</span><p class="note">Responsive and motion specs. This is where the award-level craft actually lives.</p></div>
+    <div class="col">
+      <h2>Craft specification</h2>
+      <h3>Responsive strategy</h3>
+      <p>Mobile carries a large share of first visits, but the evaluation almost always happens on a desktop &mdash; the evaluator opens three portfolios in three tabs. So: <strong>author content order mobile-first, art-direct the showcase desktop-first.</strong></p>
+      <ul>
+        <li>Test the hero at 375px width. The full value proposition and the primary button must be visible without scrolling. If they aren't, the headline is too long &mdash; not the viewport too small.</li>
+        <li>Case studies on mobile are a <em>reading</em> experience, not a shrunken canvas. Full-bleed images, single column, generous type, no side-by-side comparisons that become unreadable.</li>
+        <li>Every interactive element needs a touch equivalent. A hover-only reveal simply does not exist on half your traffic.</li>
+        <li>Portfolio-specific risk: heavy imagery. Serve modern formats, size them properly, lazy-load below the fold. A gorgeous site that loads in six seconds on 4G was not seen.</li>
+      </ul>
+      <h3>Motion specification</h3>
+      <p>One principle: <strong>motion reveals structure or state; it never gates content.</strong> Concretely &mdash;</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Element</th><th>Spec</th></tr></thead>
+          <tbody>
+            <tr><td>Page load</td><td>No blocking preloader. If a sequence exists, cap at 800ms and let content be readable throughout.</td></tr>
+            <tr><td>Scroll reveals</td><td>Trigger at 15&ndash;20% viewport entry, so content is present before it is noticed. Never animate the hero in.</td></tr>
+            <tr><td>UI transitions</td><td>200&ndash;400ms, ease-out for entrances, ease-in for exits.</td></tr>
+            <tr><td>Page / scene transitions</td><td>600&ndash;800ms maximum, with visual continuity between the outgoing and incoming state.</td></tr>
+            <tr><td>Hover micro-interactions</td><td>Under 150ms. Their job is to confirm interactivity, nothing more.</td></tr>
+            <tr><td>Accessibility</td><td><code style="font-family:var(--mono);font-size:.85em">prefers-reduced-motion</code> honoured throughout, with a static equivalent that loses no information.</td></tr>
+            <tr><td>Performance ceiling</td><td>Largest Contentful Paint under 2.5s. Treat this as a design constraint, not an engineering afterthought.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>For a UX portfolio specifically, restraint <em>is</em> the flex. A site that moves precisely and sparingly reads as the work of someone who understands attention as a budget &mdash; which is exactly the skill the visitor is trying to assess.</p>
+    </div>
+  </div>
+</section>
+
+<section id="measure">
+  <div class="grid">
+    <div class="rail"><span class="num">09</span><p class="note">Traffic is a vanity metric here. These five are not.</p></div>
+    <div class="col">
+      <h2>How you'll know it's working</h2>
+      <p class="lede">A portfolio with 200 monthly visitors and four qualified inquiries is beating one with 20,000 visitors and none. Instrument for the funnel, not the audience.</p>
+      <div class="cards">
+        <div class="card"><span class="metric">&gt;35%</span><h5>Reach a case study</h5><p>If lower, the homepage work cards aren't compelling &mdash; usually because they're titled with client names instead of outcomes.</p></div>
+        <div class="card"><span class="metric">&gt;60%</span><h5>Case study scroll depth</h5><p>Measures whether the inverted pyramid is holding. A cliff at one section names the weak section.</p></div>
+        <div class="card"><span class="metric">&gt;8%</span><h5>Reach contact or booking</h5><p>The real conversion event. Track which page they came from &mdash; that page is your best salesperson.</p></div>
+        <div class="card"><span class="metric">n</span><h5>Qualified inquiries / month</h5><p>The only number that pays. Set a target; four good ones beats forty bad ones.</p></div>
+        <div class="card"><span class="metric">%</span><h5>Inquiry fit rate</h5><p>Share of inquiries that match your positioning. Falling fit rate means the site is too vague, even if volume is up.</p></div>
+      </div>
+      <p>Add one qualitative loop that is worth more than all of the above: after every sales call, ask <em>&ldquo;what on the site made you reach out?&rdquo;</em> Five answers will tell you what to double down on and what to delete.</p>
+    </div>
+  </div>
+</section>
+
+<section id="next">
+  <div class="grid">
+    <div class="rail"><span class="num">10</span><p class="note">Order matters. Positioning before pixels, always.</p></div>
+    <div class="col">
+      <h2>Build order</h2>
+      <p class="lede">The sequence below is deliberate: every step depends on the one above it, and skipping straight to design is how portfolios end up beautiful and silent.</p>
+      <ul class="checklist">
+        <li><b>Answer the five positioning questions.</b> One sentence each. Nothing else starts until these exist.</li>
+        <li><b>Write the hero claim and proof line.</b> Test it on three people in your target segment: can they repeat it back?</li>
+        <li><b>Choose the three projects</b> and write each one's outcome headline before touching any layout.</li>
+        <li><b>Draft one full case study in plain text.</b> If it persuades as text, the design will amplify it. If it doesn't, no design will save it.</li>
+        <li><b>Wireframe the homepage</b> against the seven-section sequence.</li>
+        <li><b>Define the visual system</b> &mdash; type scale, palette, motion tokens, grid.</li>
+        <li><b>Build responsive, mobile content order first.</b> Ship the hero and one case study before the rest exists.</li>
+        <li><b>Layer motion last</b> &mdash; deliberately, and only where it clarifies.</li>
+        <li><b>Instrument the five metrics,</b> then leave it alone for eight weeks before judging.</li>
+      </ul>
+      <div class="callout">
+        <span class="tag">Next decision for you</span>
+        <p>Two things unlock the rest of this: the <strong>client segment</strong> (mid-market is the recommendation, adjust per the note in section 02) and the <strong>problem specialisation</strong>. Once those are named, the hero copy, the three project choices, and the whole navigation model resolve almost mechanically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p><strong>On the figures cited.</strong> Attention and abandonment data &mdash; the 10-second exit window, the ~50ms aesthetic judgment, and the above-the-fold distribution (57% / 74% / 42%) &mdash; come from Nielsen Norman Group research, primarily <a href="https://www.nngroup.com/articles/how-long-do-users-stay-on-web-pages/">How Long Do Users Stay on Web Pages?</a>, <a href="https://www.nngroup.com/articles/scrolling-and-attention/">Scrolling and Attention</a>, and <a href="https://www.nngroup.com/articles/first-impressions-human-automaticity/">First Impressions Form Quickly</a>. The conversion benchmarks in section 09 are working targets for a small independent practice, not published industry figures &mdash; treat them as starting hypotheses to calibrate against your own baseline. Everything else here is structural judgment, offered to be argued with.</p>
+</footer>
+
+</div>
+
+</body>
+</html>
