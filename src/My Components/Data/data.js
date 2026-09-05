@@ -4,9 +4,9 @@ const Bio = {
   tagline: "I build interfaces that ship — fast, responsive, and production-ready.",
   roles: [
     "Full-Stack Developer",
-    "React.js Engineer",
+    "React.js Developer",
     "AWS Cloud Developer",
-    "UI/UX Craftsman",
+    "Frontend UI Developer"
   ],
   email: "nallavellipreethi@gmail.com",
   phone: "+91 88978 51977",
@@ -15,7 +15,7 @@ const Bio = {
   portfolio: "https://anupreethi-2s.github.io/Anupreeti-Portfolio/",
   location: "Hyderabad, India",
   about: [
-    "Full-stack developer with hands-on experience building React.js + Node.js applications backed by AWS infrastructure. I specialize in turning Figma designs into pixel-perfect, responsive interfaces and optimizing them for speed and usability.",
+    "Senior Full-stack developer with hands-on experience building React.js + Node.js applications backed by AWS infrastructure. I specialize in turning Figma designs into pixel-perfect, responsive interfaces and optimizing them for speed and usability.",
     "Currently a Senior Developer at Hornbill Technologies, where I've built production features with Lambda, DynamoDB, S3, and CloudWatch — and improved system performance across the board.",
     "I care about clean code, fast load times, and user experiences that feel effortless. Always learning, always shipping.",
   ],
