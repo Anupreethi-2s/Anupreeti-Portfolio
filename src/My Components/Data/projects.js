@@ -1,6 +1,36 @@
 const Projects = {
   projects: [
     {
+      title: "GeoDrone Inspection Portal",
+      category: "Web Development",
+      problem:
+        "Drone inspection teams reviewed thousands of thermal and RGB images and marked solar and transmission line defects by hand, across separate desktop tools.",
+      role: "Web Developer — React.js, AWS",
+      stack: ["React.js", "Vite", "Leaflet", "AWS Amplify", "Cognito", "REST APIs"],
+      description:
+        "Built the React web portal: project dashboards, a Leaflet inspection map that stays fast with thousands of defect markers, bounding-box tools that box the hotspot and read its temperature automatically, defect lists, deliverables and Transmission Line modules (towers, spans, components).",
+      outcome:
+        "One web portal for the whole inspection workflow, from upload to client deliverables, with secure role-based access.",
+      githubLink: "",
+      liveLink: "",
+      featured: true,
+    },
+    {
+      title: "Serverless Report Automation",
+      category: "Python Automation & Cloud",
+      problem:
+        "Inspection reports were made by hand in Word, Excel and AutoCAD for every block, which was slow and error-prone.",
+      role: "Developer — Python, AWS",
+      stack: ["Python", "AWS Lambda", "ECS Fargate", "ReportLab", "openpyxl", "GDAL", "CloudFormation"],
+      description:
+        "Built 13 Python automation services on AWS: PDF, Excel and Google Earth (KMZ) reports generated as async jobs, event-driven image pipelines (S3 → EventBridge → Lambda), a Dockerised GDAL map-tiling pipeline on ECS Fargate, and thermal temperature reading through the DJI Thermal SDK with ctypes. Deployed as infrastructure as code with least-privilege IAM.",
+      outcome:
+        "Reports that were made by hand are now generated in one click, straight from the portal.",
+      githubLink: "",
+      liveLink: "",
+      featured: true,
+    },
+    {
       title: "Hornbill Full-Stack Portal",
       category: "Full-Stack Development",
       problem:

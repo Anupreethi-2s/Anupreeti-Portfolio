@@ -56,26 +56,29 @@ const About = () => {
 
       <div className={`about-right ${visible ? "reveal" : ""}`}>
         <div className="section-label">About Me</div>
-        <h2 className="about-heading">Building fast, polished, production-grade UI</h2>
+        <h2 className="about-heading">Building web apps and the automation behind them</h2>
         {Bio.about.map((para, i) => (
           <p key={i} className="about-para">{para}</p>
         ))}
 
-        <div className="experience-block">
-          <div className="exp-header">
-            <WorkIcon className="exp-icon" />
-            <h3 className="exp-title">{Bio.experience.role}</h3>
+        <h3 className="edu-heading">Experience</h3>
+        {Bio.experience.map((exp) => (
+          <div className="experience-block" key={exp.company}>
+            <div className="exp-header">
+              <WorkIcon className="exp-icon" />
+              <h3 className="exp-title">{exp.role}</h3>
+            </div>
+            <p className="exp-company">
+              {exp.company} · {exp.location}
+            </p>
+            <p className="exp-duration">{exp.duration}</p>
+            <ul className="exp-highlights">
+              {exp.highlights.map((h, i) => (
+                <li key={i}>{h}</li>
+              ))}
+            </ul>
           </div>
-          <p className="exp-company">
-            {Bio.experience.company} · {Bio.experience.location}
-          </p>
-          <p className="exp-duration">{Bio.experience.duration}</p>
-          <ul className="exp-highlights">
-            {Bio.experience.highlights.map((h, i) => (
-              <li key={i}>{h}</li>
-            ))}
-          </ul>
-        </div>
+        ))}
 
         <h3 className="edu-heading">Education</h3>
         <div className="timeline">

@@ -96,8 +96,8 @@ const Home = ({ scrollToSection, projectsRef, contactRef }) => {
           <span className="card-label">AWS</span>
         </div>
         <div className="hero-floating-card card-3">
-          <span className="card-emoji">🚀</span>
-          <span className="card-label">Node.js</span>
+          <span className="card-emoji">🐍</span>
+          <span className="card-label">Python</span>
         </div>
       </div>
     </div>
