@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Anupreeti-Portfolio/static/css/main.3a829e23.css",
-    "main.js": "/Anupreeti-Portfolio/static/js/main.a7550329.js",
+    "main.css": "/Anupreeti-Portfolio/static/css/main.0f61373e.css",
+    "main.js": "/Anupreeti-Portfolio/static/js/main.f4a26788.js",
     "static/js/453.83234151.chunk.js": "/Anupreeti-Portfolio/static/js/453.83234151.chunk.js",
     "static/media/profile.jpg": "/Anupreeti-Portfolio/static/media/profile.a7190a3a5f2eb7c4fb08.jpg",
     "index.html": "/Anupreeti-Portfolio/index.html",
-    "main.3a829e23.css.map": "/Anupreeti-Portfolio/static/css/main.3a829e23.css.map",
-    "main.a7550329.js.map": "/Anupreeti-Portfolio/static/js/main.a7550329.js.map",
+    "main.0f61373e.css.map": "/Anupreeti-Portfolio/static/css/main.0f61373e.css.map",
+    "main.f4a26788.js.map": "/Anupreeti-Portfolio/static/js/main.f4a26788.js.map",
     "453.83234151.chunk.js.map": "/Anupreeti-Portfolio/static/js/453.83234151.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3a829e23.css",
-    "static/js/main.a7550329.js"
+    "static/css/main.0f61373e.css",
+    "static/js/main.f4a26788.js"
   ]
 }
